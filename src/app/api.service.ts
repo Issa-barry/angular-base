@@ -10,20 +10,24 @@ providedIn: 'root'
 
     export class ApiService {
     redirectUrl: string ="";
-    baseUrl:string = "http://localhost/auth-base/auth-base-back";
+    baseUrl:string = "http://localhost/auth-base/php";
+    baseUrl2:string = "http://localhost/phpOO" ;
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
     constructor(private httpClient : HttpClient) { }
 
-    public userlogin(username:string, password:string) {
-     alert(username)
-     return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
-        .pipe(map(Users => {
-        this.setToken(Users[0].name);
-        this.getLoggedInName.emit(true);
-        return Users;
-        }));
-    }
+    
+
+    public _getAllUser(){
+		return this.httpClient.get<Users[]>(this.baseUrl2 +'/index.php');
+	}
+
+    
+
+
+
+
+
 
     public userregistration(name:string,email:string,pwd:string) {
     return this.httpClient.post<any>(this.baseUrl + '/register.php', { name,email, pwd })
@@ -32,9 +36,17 @@ providedIn: 'root'
     }));
     }
     
-    public _getUser(){
-      
-    }
+    public userlogin(username:string, password:string) {
+        alert(username)
+        return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
+           .pipe(map(Users => {
+           this.setToken(Users[0].name);
+           this.getLoggedInName.emit(true);
+           return Users;
+           }));
+       }
+
+
 
     //token
     setToken(token: string) {

@@ -1,2 +1,24 @@
 <br/><br/>
 <p align="center">Welcome to Administrator Page</p>
+
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+        </tr>
+        <tr *ngFor="let data of datas">
+            <td>{{ data.id}}</td>
+            <td>{{ data.name}}</td>
+            <td>{{ data.email}}</td>
+        <td>
+            <button>Edit</button>
+            <button id="del" class="primary">Delete</button>
+        <!-- <button (click)="selectProduct(product)">Edit</button>
+        <button id="del" (click)="deleteProduct(product.id)">Delete</button> -->
+        </td>
+        </tr>
+        </table>
+</div>
