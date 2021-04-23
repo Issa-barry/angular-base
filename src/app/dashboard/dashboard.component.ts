@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.dataService._getAllUser().subscribe((datas: Users[]) =>{
       this.datas = datas;
-      console.log(this.datas);
     },error => console.error(error));
   }
 
